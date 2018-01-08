@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>zoinks</title>
+	<style>
+		* { padding: 0; margin: 0;}
+		canvas { background : #eee; display: block; margin: 0 auto; }
+	</style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<script>
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+
+	var x = canvas.width/2;
+	var y = canvas.height-30;
+	var dx = 2;
+	var dy = -2;
+	
+	var ballRadius = 10;
+	var paddleHeight = 10;
+	var paddleWidth = 75;
+	var paddleX = (canvas.width-paddleWidth)/2;
+	
+	function drawBall() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.beginPath();
+		ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+		ctx.fillStyle = "#0095DD";
+		ctx.fill();
+		ctx.closePath();	
+	}
+	function calculateBall() {
+		if(y + dy < ballRadius || y + dy > canvas.height-ballRadius) {
+			dy = -dy;
+		}
+		if(x + dx < ballRadius || x + dx > canvas.width-ballRadius) {
+			dx = -dx;
+		}
+	}
+	function draw() {
+		drawBall();
+		calculateBall();
+		
+		x += dx;
+		y += dy;
+	}
+	setInterval(draw, 10);
+</script>
+
+</body>
+</html>
