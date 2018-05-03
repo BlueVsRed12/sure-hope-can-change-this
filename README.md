@@ -1,3 +1,3 @@
 # sure-hope-can-change-this
 
-there's just a ball that bounces around
+there's just a box that bounces around
